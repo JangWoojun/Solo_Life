@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:id="@+id/loginBtn"
+                    android:id="@+id/loginMoveBtn"
                     android:text="로그인"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -43,7 +43,7 @@
                     android:layout_height="60dp"/>
 
                 <Button
-                    android:id="@+id/joinBtn"
+                    android:id="@+id/joinMoveBtn"
                     android:text="회원가입"
                     android:textSize="20sp"
                     android:textStyle="bold"
