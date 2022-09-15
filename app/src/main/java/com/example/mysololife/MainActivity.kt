@@ -17,14 +17,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         auth = Firebase.auth
 
-        findViewById<Button>(R.id.logoutBtn).setOnClickListener {
-            auth.signOut()
-            Toast.makeText(this,"로그아웃 하셨습니다",Toast.LENGTH_LONG).show()
-            val intent = Intent(this, IntroActivity::class.java)
-            // 뒤로 가기 해도 회원가입 창 안 뜨게
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-        }
+//        findViewById<Button>(R.id.logoutBtn).setOnClickListener {
+//            auth.signOut()
+//            Toast.makeText(this,"로그아웃 하셨습니다",Toast.LENGTH_LONG).show()
+//            val intent = Intent(this, IntroActivity::class.java)
+//            // 뒤로 가기 해도 회원가입 창 안 뜨게
+//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//            startActivity(intent)
+//        }
 
 
     }
