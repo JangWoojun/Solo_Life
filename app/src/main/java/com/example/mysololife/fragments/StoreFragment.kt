@@ -36,7 +36,7 @@ private lateinit var binding: FragmentStoreBinding
             it.findNavController().navigate(R.id.action_storeFragment_to_bookmarkFragment)
         }
         binding.homeTap.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_storeFragment)
+            it.findNavController().navigate(R.id.action_storeFragment_to_homeFragment)
         }
 
 
