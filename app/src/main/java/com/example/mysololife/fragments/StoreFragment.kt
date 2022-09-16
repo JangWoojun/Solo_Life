@@ -5,11 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.mysololife.R
+import com.example.mysololife.databinding.FragmentStoreBinding
 
 
 class StoreFragment : Fragment() {
-
+private lateinit var binding: FragmentStoreBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +24,23 @@ class StoreFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_store, container, false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_store, container, false)
+
+        binding.tipTap.setOnClickListener {
+            it.findNavController().navigate(R.id.action_storeFragment_to_tipFragment)
+        }
+        binding.talkTap.setOnClickListener {
+            it.findNavController().navigate(R.id.action_storeFragment_to_talkFragment)
+        }
+        binding.bookmarkTap.setOnClickListener {
+            it.findNavController().navigate(R.id.action_storeFragment_to_bookmarkFragment)
+        }
+        binding.homeTap.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_storeFragment)
+        }
+
+
+        return binding.root
     }
 
 
