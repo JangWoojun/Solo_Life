@@ -7,7 +7,7 @@ import android.view.ViewParent
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mysololife.R
 
-class ContentRVAdapter (val items : ArrayList<String>) : RecyclerView.Adapter<ContentRVAdapter.Viewholder>(){
+class ContentRVAdapter (val items : ArrayList<ContentModel>) : RecyclerView.Adapter<ContentRVAdapter.Viewholder>(){
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentRVAdapter.Viewholder {
             val v = LayoutInflater.from(parent.context).inflate(R.layout.content_rv_item,parent,false)
@@ -24,7 +24,7 @@ class ContentRVAdapter (val items : ArrayList<String>) : RecyclerView.Adapter<Co
 
     inner class Viewholder (itemView : View) : RecyclerView.ViewHolder(itemView) { // rv_item에 넣어주는 부분
 
-        fun bindItems (item : String) {
+        fun bindItems (item : ContentModel) {
 
         }
 
