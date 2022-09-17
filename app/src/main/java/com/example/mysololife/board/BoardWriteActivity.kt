@@ -1,7 +1,10 @@
 package com.example.mysololife.board
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.mysololife.R
@@ -31,5 +34,19 @@ class BoardWriteActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.imageArea.setOnClickListener {
+            val gallery = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery,100)
+        }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && resultCode == 100) {
+            Log.d("BoardWriteActivity","vccdasdfasdfasdfasdfasdf")
+            binding.imageArea.setImageURI(data?.data)
+
+        }
     }
 }
