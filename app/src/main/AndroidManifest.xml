@@ -16,6 +16,9 @@
         android:theme="@style/Theme.MySoloLife"
         tools:targetApi="31">
         <activity
+            android:name=".board.BoardWriteActivity"
+            android:exported="false" />
+        <activity
             android:name=".contentsLIst.ContentShowActivity"
             android:exported="false" />
         <activity
