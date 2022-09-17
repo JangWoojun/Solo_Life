@@ -20,6 +20,6 @@ class ContentListActivity : AppCompatActivity() {
         val rvAdapter = ContentRVAdapter(items)
         rv.adapter = rvAdapter
 
-        rv.layoutManager = LinearLayoutManager(this)
+        rv.layoutManager = GridLayoutManager(this,2)
     }
 }
