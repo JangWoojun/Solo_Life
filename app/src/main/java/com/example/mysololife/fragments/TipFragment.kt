@@ -1,5 +1,6 @@
 package com.example.mysololife.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.mysololife.R
+import com.example.mysololife.contentsLIst.ContentListActivity
+import com.example.mysololife.contentsLIst.ContentRVAdapter
 import com.example.mysololife.databinding.FragmentTipBinding
 
 
@@ -23,6 +26,11 @@ private lateinit var binding: FragmentTipBinding
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_tip, container, false)
+
+        binding.category1.setOnClickListener {
+            val intent = Intent(context,ContentListActivity::class.java)
+             startActivity(intent)
+        }
 
         binding.talkTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_tipFragment_to_talkFragment)
