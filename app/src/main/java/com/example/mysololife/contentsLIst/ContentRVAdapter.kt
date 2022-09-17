@@ -60,10 +60,20 @@ class ContentRVAdapter (val context : Context,
             }
 
             bookmarkArea.setOnClickListener {
-                FBRef.bookmarkRef
-                    .child(FBAuth.getUid())
-                    .child(key)
-                    .setValue(BookmarkModel(true))
+
+                if(bookmarkIdList.contains(key)){
+                    FBRef.bookmarkRef
+                        .child(FBAuth.getUid())
+                        .child(key)
+                        .removeValue()
+                }
+                else {
+                    FBRef.bookmarkRef
+                        .child(FBAuth.getUid())
+                        .child(key)
+                        .setValue(BookmarkModel(true))
+                }
+
             }
 
             contentTitle.text = item.title
