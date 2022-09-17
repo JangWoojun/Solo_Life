@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mysololife.R
+import com.example.mysololife.utils.FBAuth
+import com.example.mysololife.utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -20,6 +22,10 @@ class ContentListActivity : AppCompatActivity() {
 
     lateinit var myRef : DatabaseReference
 
+    val bookmarkIdList = mutableListOf<String>()
+
+    lateinit var rvAdapter: ContentRVAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_content_list)
@@ -27,7 +33,7 @@ class ContentListActivity : AppCompatActivity() {
         val items = ArrayList<ContentModel>()
         val itemKeyList = ArrayList<String>()
 
-        val rvAdapter = ContentRVAdapter(baseContext,items,itemKeyList)
+       rvAdapter = ContentRVAdapter(baseContext,items,itemKeyList,bookmarkIdList)
 
         val database = Firebase.database
 
@@ -115,6 +121,23 @@ class ContentListActivity : AppCompatActivity() {
 
 
 
+        getBookmarkData()
+    }
+    private fun getBookmarkData(){
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
 
+                for (dataModel in dataSnapshot.children) {
+                    bookmarkIdList.add(dataModel.key.toString())
+                }
+                rvAdapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w("ContentListActivity", "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        FBRef.bookmarkRef.child(FBAuth.getUid()).addValueEventListener(postListener)
     }
 }
