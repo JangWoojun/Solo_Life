@@ -11,8 +11,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mysololife.R
+import com.example.mysololife.utils.FBAuth
+import com.example.mysololife.utils.FBRef
 
-class ContentRVAdapter (val context : Context, val items : ArrayList<ContentModel>) : RecyclerView.Adapter<ContentRVAdapter.Viewholder>(){
+class ContentRVAdapter (val context : Context, val items : ArrayList<ContentModel>,val keyList: ArrayList<String>) : RecyclerView.Adapter<ContentRVAdapter.Viewholder>(){
 
 
 
@@ -23,7 +25,7 @@ class ContentRVAdapter (val context : Context, val items : ArrayList<ContentMode
 
         override fun onBindViewHolder(holder : ContentRVAdapter.Viewholder, position: Int) {
 
-            holder.bindItems(items[position]) // 아이템에 연결?
+            holder.bindItems(items[position],keyList[position]) // 아이템에 연결?
         }
 
         override fun getItemCount(): Int {
@@ -32,7 +34,7 @@ class ContentRVAdapter (val context : Context, val items : ArrayList<ContentMode
 
     inner class Viewholder (itemView : View) : RecyclerView.ViewHolder(itemView) { // rv_item에 넣어주는 부분
 
-        fun bindItems (item : ContentModel) {
+        fun bindItems (item : ContentModel , key : String) {
 
             itemView.setOnClickListener {
                 val intent = Intent(context,ContentShowActivity::class.java)
@@ -42,6 +44,11 @@ class ContentRVAdapter (val context : Context, val items : ArrayList<ContentMode
 
             val contentTitle =itemView.findViewById<TextView>(R.id.textArea)
             val imageView = itemView.findViewById<ImageView>(R.id.imageArea)
+            val bookmarkArea = itemView.findViewById<ImageView>(R.id.bookmarkArea)
+
+            bookmarkArea.setOnClickListener {
+                FBRef.bookmarkRef.child(FBAuth.getUid()).child(key).setValue("bookmark")
+            }
 
             contentTitle.text = item.title
 
