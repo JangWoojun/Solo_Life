@@ -29,7 +29,13 @@ private lateinit var binding: FragmentTipBinding
 
         binding.category1.setOnClickListener {
             val intent = Intent(context,ContentListActivity::class.java)
+            intent.putExtra("category","category1")
              startActivity(intent)
+        }
+        binding.category2.setOnClickListener {
+            val intent = Intent(context,ContentListActivity::class.java)
+            intent.putExtra("category","category2")
+            startActivity(intent)
         }
 
         binding.talkTap.setOnClickListener {
