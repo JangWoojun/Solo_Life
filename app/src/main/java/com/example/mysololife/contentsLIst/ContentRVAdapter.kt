@@ -1,6 +1,7 @@
 package com.example.mysololife.contentsLIst
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,10 +14,6 @@ import com.example.mysololife.R
 
 class ContentRVAdapter (val context : Context, val items : ArrayList<ContentModel>) : RecyclerView.Adapter<ContentRVAdapter.Viewholder>(){
 
-        interface  ItemClick {
-            fun  onClick (view : View , position: Int)
-        }
-        var itemClick : ItemClick? = null
 
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentRVAdapter.Viewholder {
@@ -25,11 +22,7 @@ class ContentRVAdapter (val context : Context, val items : ArrayList<ContentMode
         }
 
         override fun onBindViewHolder(holder : ContentRVAdapter.Viewholder, position: Int) {
-            if (itemClick != null){
-                holder.itemView.setOnClickListener { v->
-                    itemClick?.onClick(v,position)
-                }
-            }
+
             holder.bindItems(items[position]) // 아이템에 연결?
         }
 
@@ -40,6 +33,12 @@ class ContentRVAdapter (val context : Context, val items : ArrayList<ContentMode
     inner class Viewholder (itemView : View) : RecyclerView.ViewHolder(itemView) { // rv_item에 넣어주는 부분
 
         fun bindItems (item : ContentModel) {
+
+            itemView.setOnClickListener {
+                val intent = Intent(context,ContentShowActivity::class.java)
+                intent.putExtra("url",item.webUrl)
+                itemView.context.startActivities(arrayOf(intent))
+            }
 
             val contentTitle =itemView.findViewById<TextView>(R.id.textArea)
             val imageView = itemView.findViewById<ImageView>(R.id.imageArea)
