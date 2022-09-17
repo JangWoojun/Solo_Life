@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.mysololife.R
+import com.example.mysololife.board.BoardListLVAdapter
+import com.example.mysololife.board.BoardModel
 import com.example.mysololife.board.BoardWriteActivity
 import com.example.mysololife.databinding.FragmentTalkBinding
 
@@ -26,6 +28,14 @@ private lateinit var binding: FragmentTalkBinding
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_talk, container, false)
+
+        val bordList = mutableListOf<BoardModel>()
+        bordList.add(BoardModel("a","b","c","d"))
+
+        val boardRVAdapter = BoardListLVAdapter(bordList)
+
+        binding.boardListView.adapter = boardRVAdapter
+
 
         binding.writeBtn.setOnClickListener {
             val intent = Intent(context,BoardWriteActivity::class.java)
