@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewParent
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mysololife.R
 
@@ -25,6 +26,9 @@ class ContentRVAdapter (val items : ArrayList<ContentModel>) : RecyclerView.Adap
     inner class Viewholder (itemView : View) : RecyclerView.ViewHolder(itemView) { // rv_item에 넣어주는 부분
 
         fun bindItems (item : ContentModel) {
+
+            val contentTitle =itemView.findViewById<TextView>(R.id.textArea)
+            contentTitle.text = item.title
 
         }
 
