@@ -3,7 +3,9 @@ package com.example.mysololife.board
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewParent
 import android.widget.BaseAdapter
+import android.widget.TextView
 import com.example.mysololife.R
 
 class BoardListLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter() {
@@ -11,20 +13,30 @@ class BoardListLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter(
         return boardList.size
     }
 
-    override fun getItem(p0: Int): Any {
-        return boardList[p0]
+    override fun getItem(position: Int): Any {
+        return boardList[position]
     }
 
-    override fun getItemId(p0: Int): Long {
-        return p0.toLong()
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
     }
 
-    override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View? {
+    override fun getView(position: Int, convertView: View?, parent : ViewGroup?): View {
 
-        var converView = p1
-        if (converView == null){
-            converView = LayoutInflater.from(p2?.context).inflate(R.layout.board_list_item,p2,false)
+        var view = convertView
+
+        if (view == null){
+            view = LayoutInflater.from(parent?.context).inflate(R.layout.board_list_item,parent,false)
         }
-        return converView
+
+        val title = view?.findViewById<TextView>(R.id.titleArea)
+        val content = view?.findViewById<TextView>(R.id.contentArea)
+        val time = view?.findViewById<TextView>(R.id.timeArea)
+
+        title!!.text = boardList[position].title
+        content!!.text = boardList[position].content
+        time!!.text = boardList[position].title
+
+        return view!!
     }
 }
