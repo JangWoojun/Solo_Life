@@ -35,7 +35,7 @@ class BoardListLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter(
 
         title!!.text = boardList[position].title
         content!!.text = boardList[position].content
-        time!!.text = boardList[position].title
+        time!!.text = boardList[position].time
 
         return view!!
     }
