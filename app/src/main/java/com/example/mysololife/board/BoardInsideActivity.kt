@@ -86,6 +86,9 @@ class BoardInsideActivity : AppCompatActivity() {
                     .load(task.result)
                     .into(imageViewFB)
             }
+            else {
+                binding.getImageArea.isVisible = false
+            }
         })
 
     }
