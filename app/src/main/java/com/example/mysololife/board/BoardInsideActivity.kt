@@ -18,9 +18,14 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import java.lang.Exception
 
 class BoardInsideActivity : AppCompatActivity() {
     private lateinit var binding : ActivityBoardInsideBinding
+
+    private lateinit var key : String
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_board_inside)
@@ -37,9 +42,9 @@ class BoardInsideActivity : AppCompatActivity() {
         }
 
 
-        val key = intent.getStringExtra("key")
-        getBoardData(key.toString())
-        getImageData(key.toString())
+        key = intent.getStringExtra("key").toString()
+        getBoardData(key)
+        getImageData(key)
 
 
     }
@@ -55,7 +60,9 @@ class BoardInsideActivity : AppCompatActivity() {
 
         }
         alertDialog.findViewById<Button>(R.id.removeBtn)?.setOnClickListener {
-
+            FBRef.boardRef.child(key).removeValue()
+            Toast.makeText(this,"삭제 완료",Toast.LENGTH_LONG).show()
+            finish()
         }
 
     }
@@ -82,11 +89,17 @@ class BoardInsideActivity : AppCompatActivity() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                val dataModel = dataSnapshot.getValue(BoardModel::class.java)
+                try {
+                    val dataModel = dataSnapshot.getValue(BoardModel::class.java)
 
-                binding.titleArea.text = dataModel!!.title
-                binding.textArea.text = dataModel!!.content
-                binding.timeArea.text = dataModel!!.time
+                    binding.titleArea.text = dataModel!!.title
+                    binding.textArea.text = dataModel!!.content
+                    binding.timeArea.text = dataModel!!.time
+                }
+                catch (e: Exception){
+
+                }
+
 
 
             }
