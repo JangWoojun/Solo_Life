@@ -29,6 +29,7 @@
                     android:gravity="center"/>
 
                 <ImageView
+                    android:visibility="invisible"
                     android:id="@+id/boardSetting"
                     android:layout_margin="10dp"
                     android:layout_width="20sp"
