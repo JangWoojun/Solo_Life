@@ -35,7 +35,7 @@ class BoardWriteActivity : AppCompatActivity() {
         }
 
         binding.imageArea.setOnClickListener {
-            val gallery = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery,100)
         }
 
@@ -43,10 +43,10 @@ class BoardWriteActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK && resultCode == 100) {
-            Log.d("BoardWriteActivity","vccdasdfasdfasdfasdfasdf")
+        if (resultCode == RESULT_OK && requestCode == 100) {
             binding.imageArea.setImageURI(data?.data)
-
         }
     }
+
+
 }
