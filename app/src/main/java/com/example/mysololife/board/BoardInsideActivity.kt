@@ -12,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.mysololife.R
+import com.example.mysololife.comment.CommentModel
 import com.example.mysololife.databinding.ActivityBoardInsideBinding
 import com.example.mysololife.utils.FBAuth
 import com.example.mysololife.utils.FBRef
@@ -44,12 +45,26 @@ class BoardInsideActivity : AppCompatActivity() {
             showDialog()
         }
 
+        binding.commentBtn.setOnClickListener {
+            insertComment(key)
+        }
+
 
         key = intent.getStringExtra("key").toString()
         getBoardData(key)
         getImageData(key)
 
 
+    }
+
+    fun insertComment(key: String){
+        FBRef.commentRef
+            .child(key)
+            .push()
+            .setValue(CommentModel(binding.commentArea.text.toString()))
+
+        Toast.makeText(this,"댓글 입력 완료",Toast.LENGTH_LONG).show()
+        binding.commentArea.setText("")
     }
 
     private fun showDialog(){
