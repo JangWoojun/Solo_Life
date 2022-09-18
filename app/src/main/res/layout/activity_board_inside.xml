@@ -39,22 +39,22 @@
             android:layout_margin="10dp"
             android:layout_height="wrap_content"/>
 
+        <ImageView
+            android:id="@+id/getImageArea"
+            android:layout_margin="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
         <TextView
             android:id="@+id/textArea"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
             android:layout_margin="20dp"
             android:textColor="@color/black"
             android:text="여기는 내용 영역"
             android:background="@drawable/radius"
             android:padding="10dp"/>
 
-
-        <ImageView
-            android:id="@+id/getImageArea"
-            android:layout_margin="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"/>
 
     </LinearLayout>
 
