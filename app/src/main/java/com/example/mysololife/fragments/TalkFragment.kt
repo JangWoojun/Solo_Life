@@ -31,6 +31,8 @@ class TalkFragment : Fragment() {
 
     private lateinit var boardRVAdapter : BoardListLVAdapter
 
+    private val boardKeyList = mutableListOf<String>()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,14 +54,17 @@ class TalkFragment : Fragment() {
 
         binding.boardListView.setOnItemClickListener { parent, view, position, id ->
 
+            //1번
+//            val intent = Intent(context,BoardInsideActivity::class.java)
+//            intent.putExtra("title", boardDataList[position].title)
+//            intent.putExtra("content",boardDataList[position].content)
+//            intent.putExtra("time",boardDataList[position].time)
+//
+//            startActivity(intent)
+
             val intent = Intent(context,BoardInsideActivity::class.java)
-            intent.putExtra("title", boardDataList[position].title)
-            intent.putExtra("content",boardDataList[position].content)
-            intent.putExtra("time",boardDataList[position].time)
-
+            intent.putExtra("key",boardKeyList[position])
             startActivity(intent)
-
-
         }
 
 
@@ -94,9 +99,12 @@ class TalkFragment : Fragment() {
                     boardDataList.clear()
 
                     for (dataModel in dataSnapshot.children) {
+
                         val item = dataModel.getValue(BoardModel::class.java)
                         boardDataList.add(item!!)
+                        boardKeyList.add(dataModel.key.toString())
                     }
+                    boardKeyList.reverse()
                     boardDataList.reverse()
                     boardRVAdapter.notifyDataSetChanged()
                     Log.d("TalkFragment",boardDataList.toString())
