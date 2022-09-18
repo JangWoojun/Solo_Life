@@ -3,6 +3,10 @@ package com.example.mysololife.board
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.mysololife.R
@@ -28,12 +32,31 @@ class BoardInsideActivity : AppCompatActivity() {
 //        binding.titleArea.text = title
 //        binding.textArea.text = content
 //        binding.timeArea.text = time
+        binding.boardSetting.setOnClickListener {
+            showDialog()
+        }
 
 
         val key = intent.getStringExtra("key")
         getBoardData(key.toString())
         getImageData(key.toString())
 
+
+    }
+
+    private fun showDialog(){
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog,null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+            .setTitle("게시글 수정/삭제")
+
+        val alertDialog = mBuilder.show()
+        alertDialog.findViewById<Button>(R.id.editBtn)?.setOnClickListener {
+
+        }
+        alertDialog.findViewById<Button>(R.id.removeBtn)?.setOnClickListener {
+
+        }
 
     }
 
