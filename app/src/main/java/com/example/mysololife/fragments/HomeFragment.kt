@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
             it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
         }
 
-        binding.StoreTap.setOnClickListener {
+        binding.storeTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_storeFragment)
         }
 

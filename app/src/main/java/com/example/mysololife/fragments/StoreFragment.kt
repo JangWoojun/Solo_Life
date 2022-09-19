@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -23,6 +24,8 @@ private lateinit var binding: FragmentStoreBinding
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_store, container, false)
 
@@ -39,6 +42,8 @@ private lateinit var binding: FragmentStoreBinding
             it.findNavController().navigate(R.id.action_storeFragment_to_homeFragment)
         }
 
+        val webView = binding.storeWebView
+        webView.loadUrl("https://www.yogiyo.co.kr/mobile/#/")
 
         return binding.root
     }

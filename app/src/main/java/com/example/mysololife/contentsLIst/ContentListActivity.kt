@@ -46,10 +46,27 @@ class ContentListActivity : AppCompatActivity() {
         else if (category == "category2") {
             myRef = database.getReference("contents2")
         }
+        else if (category == "category3") {
+            myRef = database.getReference("category3")
+        }
+        else if (category == "category4") {
+            myRef = database.getReference("category4")
+        }
+        else if (category == "category5") {
+            myRef = database.getReference("contents5")
+        }
+        else if (category == "category6") {
+            myRef = database.getReference("contents6")
+        }
+        else if (category == "category7") {
+            myRef = database.getReference("contents7")
+        }
+        else if (category == "category8") {
+            myRef = database.getReference("contents8")
+        }
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-
                 for (dataModel in dataSnapshot.children) {
                     val item = dataModel.getValue(ContentModel::class.java)
                     items.add(item!!)
@@ -100,19 +117,19 @@ class ContentListActivity : AppCompatActivity() {
         rv.layoutManager = GridLayoutManager(this,2)
 
 
-//        val myRef2 = database.getReference("contents2")
-//        myRef2.push().setValue(
-//            ContentModel("title5", "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FblYPPY%2Fbtq66v0S4wu%2FRmuhpkXUO4FOcrlOmVG4G1%2Fimg.png", "https://philosopher-chan.tistory.com/1235?category=941578")
+//        val myRef8 = database.getReference("contents8")
+//        myRef8.push().setValue(
+//            ContentModel("title13", "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FblYPPY%2Fbtq66v0S4wu%2FRmuhpkXUO4FOcrlOmVG4G1%2Fimg.png", "https://philosopher-chan.tistory.com/1235?category=941578")
 //        )
-//        myRef2.push().setValue(
-//            ContentModel("title6", "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FznKK4%2Fbtq665AUWem%2FRUawPn5Wwb4cQ8BetEwN40%2Fimg.png", "https://philosopher-chan.tistory.com/1236?category=941578")
+//        myRef8.push().setValue(
+//            ContentModel("title14", "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FznKK4%2Fbtq665AUWem%2FRUawPn5Wwb4cQ8BetEwN40%2Fimg.png", "https://philosopher-chan.tistory.com/1236?category=941578")
 //        )
-//        myRef2.push().setValue(
-//            ContentModel("title7", "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbtig9C%2Fbtq65UGxyWI%2FPRBIGUKJ4rjMkI7KTGrxtK%2Fimg.png", "https://philosopher-chan.tistory.com/1237?category=941578")
+//        myRef8.push().setValue(
+//            ContentModel("title15", "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbtig9C%2Fbtq65UGxyWI%2FPRBIGUKJ4rjMkI7KTGrxtK%2Fimg.png", "https://philosopher-chan.tistory.com/1237?category=941578")
 //        )
 //
-//        myRef2.push().setValue(
-//            ContentModel("title8", "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcOYyBM%2Fbtq67Or43WW%2F17lZ3tKajnNwGPSCLtfnE1%2Fimg.png", "https://philosopher-chan.tistory.com/1238?category=941578")
+//        myRef8.push().setValue(
+//            ContentModel("title16", "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcOYyBM%2Fbtq67Or43WW%2F17lZ3tKajnNwGPSCLtfnE1%2Fimg.png", "https://philosopher-chan.tistory.com/1238?category=941578")
 //        )
 
 

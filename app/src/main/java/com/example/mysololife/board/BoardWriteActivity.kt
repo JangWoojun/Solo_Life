@@ -19,6 +19,7 @@ import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
 
 class BoardWriteActivity : AppCompatActivity() {
+    private var isImageUpload = false
     private lateinit var binding : ActivityBoardWriteBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,13 +41,17 @@ class BoardWriteActivity : AppCompatActivity() {
                 .child(key)
                 .setValue(BoardModel(title,content,uid,time))
             Toast.makeText(this,"게시글 생성 완료",Toast.LENGTH_LONG).show()
-            imageUpload(key)
+
+            if(isImageUpload == true){
+                imageUpload(key)
+            }
             finish()
         }
 
         binding.imageArea.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery,100)
+            isImageUpload = true
         }
 
     }

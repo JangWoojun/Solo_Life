@@ -86,9 +86,9 @@ class BookmarkFragment : Fragment() {
                         items.add(item!!)
                         itemKeyList.add(dataModel.key.toString())
                     }
-
                 }
                 rvAdapter.notifyDataSetChanged()
+
 
             }
 
@@ -99,12 +99,18 @@ class BookmarkFragment : Fragment() {
         }
         FBRef.category1.addValueEventListener(postListener)
         FBRef.category2.addValueEventListener(postListener)
+        FBRef.category3.addValueEventListener(postListener)
+        FBRef.category4.addValueEventListener(postListener)
+        FBRef.category5.addValueEventListener(postListener)
+        FBRef.category6.addValueEventListener(postListener)
+        FBRef.category7.addValueEventListener(postListener)
+        FBRef.category8.addValueEventListener(postListener)
     }
 
     private fun getBookmarkData(){
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-
+                bookmarkIdList.clear()
                 for (dataModel in dataSnapshot.children) {
                     bookmarkIdList.add(dataModel.key.toString())
                 }
