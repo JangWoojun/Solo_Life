@@ -12,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.mysololife.R
+import com.example.mysololife.comment.CommentLVAdapter
 import com.example.mysololife.comment.CommentModel
 import com.example.mysololife.databinding.ActivityBoardInsideBinding
 import com.example.mysololife.utils.FBAuth
@@ -25,9 +26,13 @@ import com.google.firebase.storage.ktx.storage
 import java.lang.Exception
 
 class BoardInsideActivity : AppCompatActivity() {
+    private val commentDataList = mutableListOf<CommentModel>()
+
     private lateinit var binding : ActivityBoardInsideBinding
 
     private lateinit var key : String
+
+    private lateinit var commentAdapter : CommentLVAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +46,11 @@ class BoardInsideActivity : AppCompatActivity() {
 //        binding.titleArea.text = title
 //        binding.textArea.text = content
 //        binding.timeArea.text = time
+
+        key = intent.getStringExtra("key").toString()
+        getBoardData(key)
+        getImageData(key)
+
         binding.boardSetting.setOnClickListener {
             showDialog()
         }
@@ -50,18 +60,43 @@ class BoardInsideActivity : AppCompatActivity() {
         }
 
 
-        key = intent.getStringExtra("key").toString()
-        getBoardData(key)
-        getImageData(key)
+        getCommentData(key)
 
+        commentAdapter = CommentLVAdapter(commentDataList)
+        binding.commentLV.adapter = commentAdapter
+    }
 
+    fun getCommentData(key: String){
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                commentDataList.clear()
+
+                for (dataModel in dataSnapshot.children) {
+
+                    val item = dataModel.getValue(CommentModel::class.java)
+                    commentDataList.add(item!!)
+                }
+                commentAdapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w("TalkFragment", "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        FBRef.commentRef.child(key).addValueEventListener(postListener)
     }
 
     fun insertComment(key: String){
         FBRef.commentRef
             .child(key)
             .push()
-            .setValue(CommentModel(binding.commentArea.text.toString()))
+            .setValue(CommentModel(
+                binding.commentArea.text.toString(),
+                FBAuth.getTime()
+            )
+            )
 
         Toast.makeText(this,"댓글 입력 완료",Toast.LENGTH_LONG).show()
         binding.commentArea.setText("")

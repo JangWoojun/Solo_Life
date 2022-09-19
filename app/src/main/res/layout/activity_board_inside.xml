@@ -83,7 +83,7 @@
                     android:padding="10dp"/>
 
                 <ListView
-                    android:background="#999999"
+                    android:id="@+id/commentLV"
                     android:layout_width="match_parent"
                     android:layout_height="600dp"/>
 
