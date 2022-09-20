@@ -19,7 +19,6 @@
 
 <img width="447" alt="스크린샷 2022-09-19 오후 11 25 08" src="https://user-images.githubusercontent.com/102157871/191042943-a1990454-087b-4e01-9a2b-ab663dde72f7.png">
 
-![스크린샷 2022-09-19 오후 2 39 49 1](https://user-images.githubusercontent.com/102157871/191042902-76db111d-3c7c-488d-9f19-a6e7204eedd0.png)
 <br>
 <br>
 
